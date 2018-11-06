@@ -1,0 +1,6 @@
+--require ts-node/register
+--timeout 999999
+---ui bdd
+--watch-extensions ts
+--colors
+tests/**/*.spec.ts

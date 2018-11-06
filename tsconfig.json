@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "outDir": "dist",
+        "sourceMap": true,
+
+        "strictNullChecks": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+
+        "types": [
+            "node",
+            "mocha"
+        ],
+
+        "declaration": true,
+        "declarationDir": "types"
+    },
+
+    "include": [
+        "src/**/*.ts",
+        "tests/**/*.ts"
+    ]
+}

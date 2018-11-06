@@ -1,0 +1,25 @@
+{
+  "name": "multi_blockchain_wallet",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && mocha --opts mocha.opts",
+    "test:watch": "npm run build && mocha --opts mocha.opts --watch --reporter min"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bip39": "^2.5.0",
+    "hdkey": "^1.1.0"
+  },
+  "devDependencies": {
+    "ts-node": "^7.0.1",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.2",
+    "typescript": "^3.1.6"
+  }
+}
