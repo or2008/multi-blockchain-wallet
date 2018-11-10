@@ -7,9 +7,10 @@ describe('Bancor Module', () => {
         const wallets = blockchains.map(blockchain => generate(blockchain));
 
         wallets.forEach((wallet) => {
-            console.log('----------------------------');
+            console.log('');
             console.log(wallet);
-            console.log('----------------------------');
+            console.log('');
+            console.log('--------------------------------------------------------');
         })
     });
 });

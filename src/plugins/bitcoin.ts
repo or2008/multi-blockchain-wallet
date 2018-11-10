@@ -1,30 +1,25 @@
 import * as bip39 from 'bip39';
-import * as hdkey from 'hdkey';
-import * as ecc from 'eosjs-ecc';
-import * as wif from 'wif';
-import { IKeyPair, IWallet } from '../common/wallet';
+import * as bitcoin from 'bitcoinjs-lib';
+import { IWallet } from '../common/wallet';
 
-export function getKeyPairBySeed(seed): IKeyPair {
-    const master = hdkey.fromMasterSeed(Buffer.from(seed, 'hex'))
-    const node = master.derive("m/44'/0'/0'").deriveChild(0);
-
-    const keyPair: IKeyPair = {
-        publicKey: ecc.PublicKey(node._publicKey).toString(),
-        privateKey: wif.encode(128, node._privateKey, false)
-    };
-
-    return keyPair;
+function getAddressFromNode(node) {
+    return bitcoin.payments.p2pkh({ pubkey: node.publicKey, network: bitcoin.networks.bitcoin }).address;
 }
 
 export function generateWallet(): IWallet {
-    const mnemonic = bip39.generateMnemonic()
+    const mnemonic = bip39.generateMnemonic();
 
     const seed = bip39.mnemonicToSeed(mnemonic);
-    const keyPair = getKeyPairBySeed(seed);
+    const master = bitcoin.bip32.fromSeed(seed);
+
+    const derived = master.derivePath("m/44'/0'/0'/0/0");
 
     return {
         type: 'bitcoin',
-        address: '',
-        keyPair: keyPair
+        address: getAddressFromNode(derived),
+        keyPair: {
+            publicKey: derived.publicKey.toString('hex'),
+            privateKey: bitcoin.ECPair.fromPrivateKey(derived.privateKey).toWIF()
+        }
     };
 }

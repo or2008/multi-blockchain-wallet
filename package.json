@@ -12,11 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "bip39": "^2.5.0",
+    "bitcoinjs-lib": "^4.0.2",
     "eosjs-ecc": "^4.0.4",
-    "ethereumjs-util": "^6.0.0",
     "ethereumjs-wallet": "^0.6.2",
     "hdkey": "^1.1.0",
-    "i": "^0.3.6",
     "npm": "^6.4.1",
     "wif": "^2.0.6"
   },

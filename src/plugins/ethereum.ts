@@ -11,11 +11,10 @@ export function generateWallet(): IWallet {
     const hdKey = hdkey.fromMasterSeed(seed);
     const derivedHdKey = hdKey.derivePath("m/44'/60'/0'/0").deriveChild(0);
     const wallet = derivedHdKey.getWallet();
-    const address = `0x${wallet.getAddress().toString('hex')}`;
 
     return {
         type: 'ethereum',
-        address: address,
+        address: wallet.getAddressString(),
         keyPair: {
             publicKey: wallet.getPublicKeyString(),
             privateKey: wallet.getPrivateKeyString(),
