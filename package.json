@@ -12,14 +12,20 @@
   "license": "ISC",
   "dependencies": {
     "bip39": "^2.5.0",
-    "hdkey": "^1.1.0"
+    "eosjs-ecc": "^4.0.4",
+    "ethereumjs-util": "^6.0.0",
+    "ethereumjs-wallet": "^0.6.2",
+    "hdkey": "^1.1.0",
+    "i": "^0.3.6",
+    "npm": "^6.4.1",
+    "wif": "^2.0.6"
   },
   "devDependencies": {
-    "ts-node": "^7.0.1",
-    "chai": "^4.2.0",
-    "mocha": "^5.2.0",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.12.2",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1",
     "typescript": "^3.1.6"
   }
 }
