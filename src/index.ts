@@ -10,6 +10,8 @@ export function generate(type = 'eos'): IWallet {
         return ethereumPlugin.generateWallet();
     if (type == 'eos')
         return eosPlugin.generateWallet();
+    if (type == 'tron')
+        return eosPlugin.generateWallet();
 
     return ethereumPlugin.generateWallet();
 }
