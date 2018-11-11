@@ -2,7 +2,7 @@
   "name": "multi-blockchain-wallet",
   "version": "0.0.3",
   "description": "Hello Hello",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "test": "npm run build && mocha --opts mocha.opts",
