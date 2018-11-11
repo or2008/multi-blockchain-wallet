@@ -11,6 +11,7 @@ export function createWalletByMnemonic(mnemonic: string): IWallet {
 
     return {
         type: 'ethereum',
+        mnemonic: mnemonic,
         address: wallet.getAddressString(),
         keyPair: {
             publicKey: wallet.getPublicKeyString(),

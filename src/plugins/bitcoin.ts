@@ -10,6 +10,7 @@ export function createWalletByMnemonic(mnemonic: string): IWallet {
 
     return {
         type: 'bitcoin',
+        mnemonic: mnemonic,
         address: getAddressFromNode(derived),
         keyPair: {
             publicKey: derived.publicKey.toString('hex'),
@@ -25,5 +26,4 @@ function getAddressFromNode(node) {
 export function generateWallet(): IWallet {
     const mnemonic = bip39.generateMnemonic();
     return createWalletByMnemonic(mnemonic);
-
 }

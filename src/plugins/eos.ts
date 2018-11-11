@@ -10,6 +10,7 @@ export function createWalletByMnemonic(mnemonic: string): IWallet {
 
     return {
         type: 'eos',
+        mnemonic: mnemonic,
         address: '',
         keyPair: keyPair
     };

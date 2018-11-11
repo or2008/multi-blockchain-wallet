@@ -1,10 +1,9 @@
-import { generate } from "../src";
+import { generateMulti } from "../src";
 
 describe('Bancor Module', () => {
-    it('should generate multi blockchain wallets', () => {
+    it('should generate multi blockchain wallets by the same mnemonic', () => {
 
-        const blockchains = ['ethereum', 'eos', 'bitcoin']
-        const wallets = blockchains.map(blockchain => generate(blockchain));
+        const wallets = generateMulti();
 
         wallets.forEach((wallet) => {
             console.log('');
