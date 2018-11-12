@@ -3,20 +3,9 @@ import * as hdkey from 'hdkey';
 import * as ecc from 'eosjs-ecc';
 import * as wif from 'wif';
 import { IKeyPair, IWallet } from '../common/wallet';
+import { IPlugin } from '../common/plugin';
 
-export function createWalletByMnemonic(mnemonic: string): IWallet {
-    const seed = bip39.mnemonicToSeed(mnemonic);
-    const keyPair = getKeyPairBySeed(seed);
-
-    return {
-        type: 'eos',
-        mnemonic: mnemonic,
-        address: '',
-        keyPair: keyPair
-    };
-}
-
-export function getKeyPairBySeed(seed): IKeyPair {
+function getKeyPairBySeed(seed): IKeyPair {
     const master = hdkey.fromMasterSeed(Buffer.from(seed, 'hex'))
     const node = master.derive("m/44'/194'/0'/0").deriveChild(0);
 
@@ -28,7 +17,21 @@ export function getKeyPairBySeed(seed): IKeyPair {
     return keyPair;
 }
 
-export function generateWallet(): IWallet {
-    const mnemonic = bip39.generateMnemonic()
-    return createWalletByMnemonic(mnemonic);
-}
+export const plugin: IPlugin = {
+    createWalletByMnemonic(mnemonic) {
+        const seed = bip39.mnemonicToSeed(mnemonic);
+        const keyPair = getKeyPairBySeed(seed);
+
+        return {
+            type: 'eos',
+            mnemonic: mnemonic,
+            address: '',
+            keyPair: keyPair
+        };
+    },
+
+    generateWallet(): IWallet {
+        const mnemonic = bip39.generateMnemonic()
+        return plugin.createWalletByMnemonic(mnemonic);
+    }
+};

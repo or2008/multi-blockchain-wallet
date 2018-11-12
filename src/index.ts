@@ -1,13 +1,13 @@
 import { IWallet } from './common/wallet';
-import { plugins } from './plugins';
+import { getPluginByType } from './plugins';
 import * as bip39 from 'bip39';
 
 export function generate(type = 'eos'): IWallet {
-    return plugins[type].generateWallet();
+    return getPluginByType(type).generateWallet();
 }
 
 export function createWalletByMnemonic(type, mnemonic): IWallet {
-    return plugins[type].createWalletByMnemonic(mnemonic);
+    return getPluginByType(type).createWalletByMnemonic(mnemonic)
 }
 
 export function generateMulti(types = ['bitcoin', 'ethereum', 'eos', 'tron']): IWallet[] {
