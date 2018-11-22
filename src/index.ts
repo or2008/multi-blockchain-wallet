@@ -4,8 +4,12 @@ import * as bip39 from 'bip39';
 
 const DEFAULT_TYPES = ['bitcoin', 'ethereum', 'eos', 'tron'];
 
-export function generateMnemonic(strength?, rng?, wordlist?) {
+export function generateMnemonic(strength?, rng?, wordlist?): string {
     return bip39.generateMnemonic(strength, rng, wordlist);
+}
+
+export function validateMnemonic(mnemonic): boolean {
+    return bip39.validateMnemonic(mnemonic);
 }
 
 export function generate(type = 'ethereum'): IWallet {
