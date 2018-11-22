@@ -4,7 +4,7 @@ import * as bip39 from 'bip39';
 
 const DEFAULT_TYPES = ['bitcoin', 'ethereum', 'eos', 'tron'];
 
-export function generateMnemonic(strength?, rng?, wordlist?): string {
+export function generateMnemonic(strength?, rng?, wordlist?) {
     return bip39.generateMnemonic(strength, rng, wordlist);
 }
 
