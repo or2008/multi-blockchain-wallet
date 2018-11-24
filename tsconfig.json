@@ -3,7 +3,7 @@
         "target": "es6",
         "module": "commonjs",
         "sourceMap": true,
-
+        "noEmit": true,
         "strictNullChecks": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,

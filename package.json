@@ -4,7 +4,7 @@
   "description": "Hello Hello",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc && babel src --out-dir dist --extensions \".ts\"",
+    "build": "tsc && babel src --out-dir dist",
     "prepublishOnly": "npm test && npm run build",
     "test": "npm run build && mocha --opts mocha.opts",
     "test:watch": "npm run build && mocha --opts mocha.opts --watch --reporter min"
