@@ -47,8 +47,6 @@ export const plugin: IPlugin = {
 
     signRawTransaction(rawTransaction, privateKey, chainId) {
         const eos = getOfflineEosInstance(privateKey, chainId);
-        console.log(eos, rawTransaction, privateKey, chainId);
-
-        // return eos.transaction(rawTransaction);
+        return eos.transaction(rawTransaction);
     }
 };
