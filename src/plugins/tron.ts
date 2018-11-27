@@ -28,5 +28,10 @@ export const plugin: IPlugin = {
     generateWallet(): IWallet {
         const mnemonic = bip39.generateMnemonic();
         return plugin.createWalletByMnemonic(mnemonic);
+    },
+
+    signRawTransaction(rawTransactions, privateKey) {
+        console.log('TODO', rawTransactions, privateKey);
+        return '';
     }
 };

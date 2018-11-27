@@ -1,5 +1,7 @@
 import * as bip39 from 'bip39';
 import * as hdkey from 'ethereumjs-wallet/hdkey';
+import * as EthereumTx from 'ethereumjs-tx';
+import * as EthereumUtil from 'ethereumjs-util';
 import { IWallet } from '../common/wallet';
 import { IPlugin } from '../common/plugin';
 
@@ -16,13 +18,24 @@ export const plugin: IPlugin = {
             address: wallet.getAddressString(),
             keyPair: {
                 publicKey: wallet.getPublicKeyString(),
-                privateKey: wallet.getPrivateKeyString(),
+                privateKey: wallet.getPrivateKeyString().substr(2)
             }
         };
     },
 
     generateWallet(): IWallet {
-        const mnemonic = bip39.generateMnemonic()
+        const mnemonic = bip39.generateMnemonic();
         return plugin.createWalletByMnemonic(mnemonic);
+    },
+
+    signRawTransaction(rawTransaction, privateKey) {
+        const bufferPrivateKey = EthereumUtil.toBuffer(privateKey);
+
+        const ethereumTx = new EthereumTx(rawTransaction);
+        ethereumTx.sign(bufferPrivateKey);
+
+        const serializedTransaction = ethereumTx.serialize();
+        const ethereumTxData = serializedTransaction.toString('hex');
+        return EthereumUtil.addHexPrefix(ethereumTxData);
     }
 };

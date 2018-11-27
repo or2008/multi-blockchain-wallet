@@ -1,6 +1,7 @@
-import { IWallet } from "./wallet";
+import { IWallet } from './wallet';
 
 export interface IPlugin {
     createWalletByMnemonic(mnemonic: string): IWallet;
-    generateWallet(): IWallet
-};
+    generateWallet(): IWallet,
+    signRawTransaction(...args): any;
+}
