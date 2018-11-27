@@ -18,7 +18,7 @@ export const plugin: IPlugin = {
             address: wallet.getAddressString(),
             keyPair: {
                 publicKey: wallet.getPublicKeyString(),
-                privateKey: wallet.getPrivateKeyString().substr(2)
+                privateKey: wallet.getPrivateKeyString()
             }
         };
     },
