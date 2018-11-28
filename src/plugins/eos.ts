@@ -21,7 +21,7 @@ function getKeyPairBySeed(seed): IKeyPair {
 }
 
 function getOfflineEosInstance(privateKey, chainId) {
-    return Eos({ // eslint-disable-line new-cap
+    return new Eos({ // eslint-disable-line new-cap
         broadcast: false,
         httpEndpoint: null,
         chainId: chainId,

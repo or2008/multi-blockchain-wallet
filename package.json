@@ -4,7 +4,7 @@
   "description": "Hello Hello",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc && babel --plugins @babel/plugin-transform-modules-commonjs src --out-dir dist --extensions \".ts\"",
+    "build": "tsc && babel src --out-dir dist --extensions \".ts\"",
     "prepublishOnly": "npm test && npm run build",
     "test": "npm run build && mocha --opts mocha.opts",
     "test:watch": "npm run build && mocha --opts mocha.opts --watch --reporter min"
@@ -33,7 +33,6 @@
   "devDependencies": {
     "@babel/cli": "7.1.5",
     "@babel/core": "7.1.6",
-    "@babel/plugin-transform-modules-commonjs": "7.1.0",
     "@babel/preset-env": "7.1.6",
     "@babel/preset-typescript": "7.1.0",
     "@types/bip39": "2.4.0",
