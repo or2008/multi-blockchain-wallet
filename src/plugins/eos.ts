@@ -22,13 +22,8 @@ function getKeyPairBySeed(seed): IKeyPair {
     return keyPair;
 }
 
-function getOfflineEosInstance(privateKey, chainId) {
-    return new Eos({ // eslint-disable-line new-cap
-        broadcast: false,
-        httpEndpoint: null,
-        chainId: chainId,
-        keyProvider: privateKey
-    });
+function getEosIntance(config) {
+    return new Eos(config);
 }
 
 export const plugin: IPlugin = {
@@ -49,8 +44,8 @@ export const plugin: IPlugin = {
         return plugin.createWalletByMnemonic(mnemonic);
     },
 
-    signRawTransaction(rawTransaction, privateKey, chainId = MAINNET_CHAINID) {
-        const eos = getOfflineEosInstance(privateKey, chainId);
+    signRawTransaction(rawTransaction, eosConfig) {
+        const eos = getEosIntance(eosConfig);
         return eos.transaction(rawTransaction);
     }
 };
