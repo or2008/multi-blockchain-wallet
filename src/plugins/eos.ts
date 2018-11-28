@@ -6,6 +6,8 @@ import { IKeyPair, IWallet } from '../common/wallet';
 import { IPlugin } from '../common/plugin';
 import * as Eos from 'eosjs';
 
+const MAINNET_CHAINID = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906';
+
 function getKeyPairBySeed(seed): IKeyPair {
     const master = hdkey.fromMasterSeed(Buffer.from(seed, 'hex'));
     const node = master.derive("m/44'/194'/0'/0").deriveChild(0);
@@ -45,7 +47,7 @@ export const plugin: IPlugin = {
         return plugin.createWalletByMnemonic(mnemonic);
     },
 
-    signRawTransaction(rawTransaction, privateKey, chainId) {
+    signRawTransaction(rawTransaction, privateKey, chainId = MAINNET_CHAINID) {
         const eos = getOfflineEosInstance(privateKey, chainId);
         return eos.transaction(rawTransaction);
     }
