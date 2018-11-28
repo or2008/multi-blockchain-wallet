@@ -41,8 +41,8 @@ export const plugin: IPlugin = {
         return plugin.createWalletByMnemonic(mnemonic);
     },
 
-    signRawTransaction(rawTransaction, eosConfig) {
+    signRawTransaction(rawTransaction, transactionOptions, eosConfig) {
         const eos = getEosIntance(eosConfig);
-        return eos.transaction(rawTransaction);
+        return eos.transaction(rawTransaction, transactionOptions);
     }
 };
