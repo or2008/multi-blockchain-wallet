@@ -7,9 +7,6 @@ import { IPlugin } from '../common/plugin';
 // import * as Eos from 'eosjs';
 const Eos = require('eosjs');
 
-
-const MAINNET_CHAINID = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906';
-
 function getKeyPairBySeed(seed): IKeyPair {
     const master = hdkey.fromMasterSeed(Buffer.from(seed, 'hex'));
     const node = master.derive("m/44'/194'/0'/0").deriveChild(0);
