@@ -35,7 +35,7 @@ describe('Bancor Module', () => {
         assert(validateMnemonic(mnemonic));
     });
 
-    it.skip('should sign a sample EOS transaciton', () => {
+    it('should sign a sample EOS transaciton', () => {
         const wallet = createWalletByMnemonic(SAMPLE_MNEMONIC, 'eos');
         const rawTransaction = {
             actions: [{
@@ -55,8 +55,8 @@ describe('Bancor Module', () => {
         };
 
         const privateKey = wallet.keyPair.privateKey;
-        signRawTransaction('eos', rawTransaction, privateKey);
-        assert(true);
+        const signedTransaction = signRawTransaction('eos', rawTransaction, privateKey);
+        console.log(signedTransaction);
     });
 
     it('should sign a sample Ethereum transaciton', () => {
