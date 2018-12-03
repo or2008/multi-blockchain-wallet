@@ -1,5 +1,5 @@
 const bip39 = require('bip39');
-import * as bitcoin from 'bitcoinjs-lib';
+const bitcoin = require('bitcoinjs-lib');
 import { IWallet } from '../common/wallet';
 import { IPlugin } from '../common/plugin';
 
