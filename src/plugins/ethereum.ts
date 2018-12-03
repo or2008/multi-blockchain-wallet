@@ -1,8 +1,8 @@
-import * as bip39 from 'bip39';
-import * as hdkey from 'ethereumjs-wallet/hdkey';
-import * as EthereumTx from 'ethereumjs-tx/es5';
+const bip39 = require('bip39');
+const hdkey = require('ethereumjs-wallet/hdkey');
+const EthereumTx = require('ethereumjs-tx/es5');
+const EthereumUtil = require('ethereumjs-util');
 
-import * as EthereumUtil from 'ethereumjs-util';
 import { IWallet } from '../common/wallet';
 import { IPlugin } from '../common/plugin';
 

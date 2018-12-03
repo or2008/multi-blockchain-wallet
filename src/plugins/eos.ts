@@ -1,11 +1,11 @@
-import * as bip39 from 'bip39';
-import * as hdkey from 'hdkey';
-import * as ecc from 'eosjs-ecc';
-import * as wif from 'wif';
+const bip39 = require('bip39');
+const hdkey = require('hdkey');
+const ecc = require('eosjs-ecc');
+const wif = require('wif');
+const Eos = require('eosjs');
+
 import { IKeyPair, IWallet } from '../common/wallet';
 import { IPlugin } from '../common/plugin';
-// import * as Eos from 'eosjs';
-const Eos = require('eosjs');
 
 function getKeyPairBySeed(seed): IKeyPair {
     const master = hdkey.fromMasterSeed(Buffer.from(seed, 'hex'));

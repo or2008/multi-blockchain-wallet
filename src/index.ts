@@ -1,6 +1,6 @@
 import { IWallet } from './common/wallet';
 import { getPluginByType } from './plugins';
-import * as bip39 from 'bip39';
+const bip39 = require('bip39');
 
 const DEFAULT_TYPES = ['bitcoin', 'ethereum', 'eos', 'tron'];
 
