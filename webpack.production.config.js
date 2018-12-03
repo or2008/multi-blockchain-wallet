@@ -4,6 +4,8 @@ module.exports = {
     entry: './src/index.ts',
     mode: 'production',
     output: {
+        library: 'MultiBlockchainWallet',
+        libraryTarget: 'umd',
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.js'
     },
