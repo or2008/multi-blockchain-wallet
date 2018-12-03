@@ -19,6 +19,7 @@ describe('Bancor Module', () => {
 
         wallets.forEach(wallet => {
             assert(wallet.keyPair.privateKey);
+            assert(wallet.keyPair.publicKey);
         });
     });
 
@@ -35,7 +36,7 @@ describe('Bancor Module', () => {
         assert(validateMnemonic(mnemonic));
     });
 
-    it('should sign a sample EOS transaciton', () => {
+    it.skip('should sign a sample EOS transaciton', async () => {
         const wallet = createWalletByMnemonic(SAMPLE_MNEMONIC, 'eos');
         const rawTransaction = {
             actions: [{
@@ -55,7 +56,7 @@ describe('Bancor Module', () => {
         };
 
         const privateKey = wallet.keyPair.privateKey;
-        const signedTransaction = signRawTransaction('eos', rawTransaction, privateKey);
+        const signedTransaction = await signRawTransaction('eos', rawTransaction, { httpEndpoint: 'https://api.eosnewyork.io', keyProvider: privateKey });
         console.log(signedTransaction);
     });
 
