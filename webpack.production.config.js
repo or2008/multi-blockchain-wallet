@@ -23,7 +23,8 @@ module.exports = {
                     path.join(__dirname, 'node_modules', 'tiny-secp256k1'),
                     path.join(__dirname, 'node_modules', 'bip32'),
                     path.join(__dirname, 'node_modules', 'typeforce'),
-                    path.join(__dirname, 'node_modules', 'eosjs-ecc')
+                    path.join(__dirname, 'node_modules', 'eosjs-ecc'),
+                    path.join(__dirname, 'node_modules', 'eosjs')
                 ],
                 loader: 'babel-loader',
                 options: {
