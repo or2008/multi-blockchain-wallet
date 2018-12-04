@@ -55,6 +55,9 @@ export const plugin: IPlugin = {
             requiredKeys: publicKeys
         });
 
-        return signatures;
+        return {
+            signatures,
+            transaction: serializedTransactionUnit8Array
+        };
     }
 };
