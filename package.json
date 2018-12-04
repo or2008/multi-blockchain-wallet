@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc && webpack --config webpack.production.config.js",
     "prepublishOnly": "npm test && npm run build",
-    "test": "npm run build && mocha --opts mocha.opts",
+    "test": "mocha --opts mocha.opts",
     "test:watch": "npm run build && mocha --opts mocha.opts --watch --reporter min"
   },
   "author": "",

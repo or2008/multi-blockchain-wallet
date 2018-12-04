@@ -64,8 +64,12 @@ describe('Bancor Module', () => {
     it('should sign a sample Ethereum transaciton', () => {
         const wallet = createWalletByMnemonic(SAMPLE_MNEMONIC, 'ethereum');
         const privateKey = wallet.keyPair.privateKey;
-        const rawTransaction = { from: '0x26ac3cd6ffc1d006a56fb9cbe7bbafdff4a2efb9', value: '0x2386f26fc10000', to: '0xa56d14a49c9a81fffaef02649f007593aa33cede', gasPrice: '0x3b9aca00', nonce: '0x1', gasLimit: '0x5208' };
+
+        const rawTransaction = { from: '0x26ac3cd6ffc1d006a56fb9cbe7bbafdff4a2efb9', value: '0x2386f26fc10000', to: '0xa56d14a49c9a81fffaef02649f007593aa33cede', gasPrice: '0x3b9aca00', nonce: '0x1a', gasLimit: '0x5208' };
+        // console.log('privateKey', privateKey);
+        // console.log('rawTransaction', rawTransaction);
         const signedTransaction = signTransaction('ethereum', rawTransaction, privateKey);
+        // console.log('signedTransaction', signedTransaction);
 
         assert(signedTransaction.length == 218);
     });

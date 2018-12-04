@@ -2,7 +2,7 @@ const bip39 = require('bip39');
 const hdkey = require('hdkey');
 const ecc = require('eosjs-ecc');
 const wif = require('wif');
-const { JsSignatureProvider } = require('eosjs');
+const JsSignatureProvider = require('eosjs/dist/eosjs-jssig').default;
 
 import { IKeyPair, IWallet } from '../common/wallet';
 import { IPlugin } from '../common/plugin';
