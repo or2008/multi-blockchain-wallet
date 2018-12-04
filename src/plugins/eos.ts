@@ -9,7 +9,7 @@ import { IPlugin } from '../common/plugin';
 
 export interface IEosTransaction {
     chainId: string,
-    serializedTransaction: object
+    transaction: object
 }
 
 function getKeyPairBySeed(seed): IKeyPair {
@@ -42,13 +42,13 @@ export const plugin: IPlugin = {
         return plugin.createWalletByMnemonic(mnemonic);
     },
 
-    async signTransaction(transaction: IEosTransaction, privateKey: string) {
+    async signTransaction(eosTransaction: IEosTransaction, privateKey: string) {
         const signatureProvider = new JsSignatureProvider([privateKey]);
 
-        const { chainId, serializedTransaction } = transaction;
+        const { chainId, transaction } = eosTransaction;
         const publicKeys = await signatureProvider.getAvailableKeys();
 
-        const serializedTransactionUnit8Array = typeof serializedTransaction == 'object' ? new Uint8Array(Object.values(serializedTransaction)) : serializedTransaction;
+        const serializedTransactionUnit8Array = typeof transaction == 'object' ? new Uint8Array(Object.values(transaction)) : transaction;
         const signatures = await signatureProvider.sign({
             chainId,
             serializedTransaction: serializedTransactionUnit8Array,
