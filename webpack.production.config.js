@@ -24,7 +24,8 @@ module.exports = {
                     path.join(__dirname, 'node_modules', 'bip32'),
                     path.join(__dirname, 'node_modules', 'typeforce'),
                     path.join(__dirname, 'node_modules', 'eosjs-ecc'),
-                    path.join(__dirname, 'node_modules', 'eosjs')
+                    path.join(__dirname, 'node_modules', 'eosjs'),
+                    path.join(__dirname, 'node_modules', 'base-x')
                 ],
                 loader: 'babel-loader',
                 options: {
