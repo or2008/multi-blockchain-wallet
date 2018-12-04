@@ -1,6 +1,6 @@
 {
   "name": "multi-blockchain-wallet",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "Hello Hello",
   "main": "dist/index.js",
   "scripts": {
