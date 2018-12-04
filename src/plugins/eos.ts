@@ -2,10 +2,15 @@ const bip39 = require('bip39');
 const hdkey = require('hdkey');
 const ecc = require('eosjs-ecc');
 const wif = require('wif');
-const Eos = require('eosjs');
+const { JsSignatureProvider } = require('eosjs');
 
 import { IKeyPair, IWallet } from '../common/wallet';
 import { IPlugin } from '../common/plugin';
+
+export interface IEosTransaction {
+    chainId: string,
+    serializedTransaction: object
+}
 
 function getKeyPairBySeed(seed): IKeyPair {
     const master = hdkey.fromMasterSeed(Buffer.from(seed, 'hex'));
@@ -17,10 +22,6 @@ function getKeyPairBySeed(seed): IKeyPair {
     };
 
     return keyPair;
-}
-
-function getEosIntance(config) {
-    return new Eos(config);
 }
 
 export const plugin: IPlugin = {
@@ -41,8 +42,18 @@ export const plugin: IPlugin = {
         return plugin.createWalletByMnemonic(mnemonic);
     },
 
-    signRawTransaction(rawTransaction, eosInstanceConfig) {
-        const eos = getEosIntance(eosInstanceConfig);
-        return eos.transaction(rawTransaction);
+    async signTransaction(transaction: IEosTransaction, privateKey: string) {
+        const signatureProvider = new JsSignatureProvider([privateKey]);
+
+        const { chainId, serializedTransaction } = transaction;
+        const publicKeys = await signatureProvider.getAvailableKeys();
+
+        const signatures = await signatureProvider.sign({
+            chainId,
+            serializedTransaction,
+            requiredKeys: publicKeys
+        });
+
+        return signatures;
     }
 };

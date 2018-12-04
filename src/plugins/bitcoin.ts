@@ -30,7 +30,7 @@ export const plugin: IPlugin = {
         return plugin.createWalletByMnemonic(mnemonic);
     },
 
-    signRawTransaction(rawTransactions, privateKey) {
+    signTransaction(rawTransactions, privateKey) {
         console.log('TODO', rawTransactions, privateKey);
         return '';
     }

@@ -29,6 +29,6 @@ export function createWalletByMnemonicMulti(mnemonic: string, types = DEFAULT_TY
     return types.map(type => createWalletByMnemonic(mnemonic, type));
 }
 
-export function signRawTransaction(type, ...args) {
-    return getPluginByType(type).signRawTransaction(...args);
+export function signTransaction(type, ...args) {
+    return getPluginByType(type).signTransaction(...args);
 }

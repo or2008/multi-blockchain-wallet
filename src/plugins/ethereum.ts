@@ -29,7 +29,7 @@ export const plugin: IPlugin = {
         return plugin.createWalletByMnemonic(mnemonic);
     },
 
-    signRawTransaction(rawTransaction, privateKey) {
+    signTransaction(rawTransaction, privateKey) {
         const bufferPrivateKey = EthereumUtil.toBuffer(privateKey);
 
         const ethereumTx = new EthereumTx(rawTransaction);
