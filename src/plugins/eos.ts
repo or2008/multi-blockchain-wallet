@@ -48,9 +48,10 @@ export const plugin: IPlugin = {
         const { chainId, serializedTransaction } = transaction;
         const publicKeys = await signatureProvider.getAvailableKeys();
 
+        const serializedTransactionUnit8Array = typeof serializedTransaction == 'string' ? new Uint8Array(Object.values(JSON.parse(serializedTransaction))) : serializedTransaction;
         const signatures = await signatureProvider.sign({
             chainId,
-            serializedTransaction,
+            serializedTransaction: serializedTransactionUnit8Array,
             requiredKeys: publicKeys
         });
 

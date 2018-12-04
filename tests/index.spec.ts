@@ -1,4 +1,4 @@
-/* globals it, describe */
+/* globals it, describe, expect */
 
 import * as assert from 'assert';
 import { generateMulti, createWalletByMnemonicMulti, validateMnemonic, generateMnemonic, createWalletByMnemonic, signTransaction } from '../src';
@@ -36,28 +36,16 @@ describe('Bancor Module', () => {
         assert(validateMnemonic(mnemonic));
     });
 
-    it.skip('should sign a sample EOS transaciton', async () => {
+    it('should sign a sample EOS transaciton', async () => {
         const wallet = createWalletByMnemonic(SAMPLE_MNEMONIC, 'eos');
-        const rawTransaction = {
-            actions: [{
-                account: 'eosio.token',
-                name: 'transfer',
-                authorization: [{
-                    actor: 'useraaaaaaaa',
-                    permission: 'active'
-                }],
-                data: {
-                    from: 'useraaaaaaaa',
-                    to: 'useraaaaaaab',
-                    quantity: '0.0001 SYS',
-                    memo: ''
-                }
-            }]
-        };
 
         const privateKey = wallet.keyPair.privateKey;
-        const signedTransaction = await signTransaction('eos', rawTransaction, { httpEndpoint: 'https://api.eosnewyork.io', keyProvider: privateKey });
-        console.log(signedTransaction);
+        const transaciton = {
+            chainId: '12345',
+            serializedTransaction: new Uint8Array([0, 16, 32, 128, 255])
+        };
+        const signedTransaction = await signTransaction('eos', transaciton, privateKey);
+        assert(signedTransaction[0].includes('SIG'));
     });
 
     it('should sign a sample Ethereum transaciton', () => {
