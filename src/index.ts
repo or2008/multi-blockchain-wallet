@@ -1,16 +1,10 @@
 import { IWallet } from './common/wallet';
 import { getPluginByType } from './plugins';
-const bip39 = require('bip39');
+import { generateMnemonic } from 'bip39';
 
 const DEFAULT_TYPES = ['bitcoin', 'ethereum', 'eos', 'tron'];
 
-export function generateMnemonic(strength?, rng?, wordlist?) {
-    return bip39.generateMnemonic(strength, rng, wordlist);
-}
-
-export function validateMnemonic(mnemonic): boolean {
-    return bip39.validateMnemonic(mnemonic);
-}
+export { generateMnemonic, validateMnemonic } from 'bip39';
 
 export function generate(type): IWallet {
     return getPluginByType(type).generateWallet();
