@@ -37,7 +37,7 @@ export const plugin: IPlugin = {
     signTransaction(ethereumTransaction: IEthereumTransaction, privateKey: string) {
         const bufferPrivateKey = EthereumUtil.toBuffer(privateKey);
 
-        const rawTransaction = ethereumTransaction.transaction;
+        const rawTransaction = ethereumTransaction.transaction ? ethereumTransaction.transaction : ethereumTransaction;
 
         const ethereumTx = new EthereumTx(rawTransaction);
         ethereumTx.sign(bufferPrivateKey);
