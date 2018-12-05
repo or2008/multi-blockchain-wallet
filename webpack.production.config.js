@@ -10,7 +10,7 @@ module.exports = {
         filename: 'index.js'
     },
     optimization: {
-        minimize: false
+        minimize: true
     },
     resolve: {
         extensions: ['.ts', '.js']
