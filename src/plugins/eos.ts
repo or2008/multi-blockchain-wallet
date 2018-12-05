@@ -1,8 +1,8 @@
-const bip39 = require('bip39');
-const hdkey = require('hdkey');
-const ecc = require('eosjs-ecc');
-const wif = require('wif');
-const JsSignatureProvider = require('eosjs/dist/eosjs-jssig').default;
+import * as bip39 from 'bip39';
+import * as hdkey from 'hdkey';
+import * as ecc from 'eosjs-ecc';
+import * as wif from 'wif';
+import JsSignatureProvider from 'eosjs/dist/eosjs-jssig';
 
 import { IKeyPair, IWallet } from '../common/wallet';
 import { IPlugin } from '../common/plugin';
@@ -52,7 +52,8 @@ export const plugin: IPlugin = {
         const signatures = await signatureProvider.sign({
             chainId,
             serializedTransaction: serializedTransactionUnit8Array,
-            requiredKeys: publicKeys
+            requiredKeys: publicKeys,
+            abis: []
         });
 
         return {

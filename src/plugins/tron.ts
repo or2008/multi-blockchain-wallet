@@ -1,21 +1,19 @@
-const bip39 = require('bip39');
-const bitcoin = require('bitcoinjs-lib');
+import * as bip39 from 'bip39';
+import { bip32 } from 'bitcoinjs-lib';
 import { IWallet } from '../common/wallet';
-// import { address } from 'tronweb/dist';
-
-const TronWeb = require('tronweb');
+import { address } from 'tronweb';
 
 import { IPlugin } from '../common/plugin';
 
 export const plugin: IPlugin = {
     createWalletByMnemonic(mnemonic) {
         const seed = bip39.mnemonicToSeed(mnemonic);
-        const master = bitcoin.bip32.fromSeed(seed);
+        const master = bip32.fromSeed(seed);
 
         const derived = master.derivePath("m/44'/195'/0'/0/0");
 
         const privateKey = derived.privateKey.toString('hex');
-        const publicKey = TronWeb.address.fromPrivateKey(privateKey); // TODO - we use a big library just for this line, we should remove the lib
+        const publicKey = address.fromPrivateKey(privateKey); // TODO - we use a big library just for this line, we should remove the lib
 
         return {
             type: 'tron',

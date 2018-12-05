@@ -9,6 +9,9 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.js'
     },
+    optimization: {
+        minimize: false
+    },
     resolve: {
         extensions: ['.ts', '.js']
     },
@@ -27,10 +30,7 @@ module.exports = {
                     path.join(__dirname, 'node_modules', 'eosjs'),
                     path.join(__dirname, 'node_modules', 'base-x')
                 ],
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env', '@babel/preset-typescript']
-                }
+                loader: 'babel-loader'
             }
         ]
     }
