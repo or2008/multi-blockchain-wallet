@@ -6,6 +6,10 @@ const EthereumUtil = require('ethereumjs-util');
 import { IWallet } from '../common/wallet';
 import { IPlugin } from '../common/plugin';
 
+export interface IEthereumTransaction {
+    transaction: object
+}
+
 export const plugin: IPlugin = {
     createWalletByMnemonic(mnemonic) {
         const seed = bip39.mnemonicToSeed(mnemonic);
@@ -29,8 +33,10 @@ export const plugin: IPlugin = {
         return plugin.createWalletByMnemonic(mnemonic);
     },
 
-    signTransaction(rawTransaction, privateKey) {
+    signTransaction(ethereumTransaction: IEthereumTransaction, privateKey: string) {
         const bufferPrivateKey = EthereumUtil.toBuffer(privateKey);
+
+        const rawTransaction = ethereumTransaction.transaction;
 
         const ethereumTx = new EthereumTx(rawTransaction);
         ethereumTx.sign(bufferPrivateKey);
