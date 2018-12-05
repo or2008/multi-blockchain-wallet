@@ -28,7 +28,10 @@ module.exports = {
                     path.join(__dirname, 'node_modules', 'typeforce'),
                     path.join(__dirname, 'node_modules', 'eosjs-ecc'),
                     path.join(__dirname, 'node_modules', 'eosjs'),
-                    path.join(__dirname, 'node_modules', 'base-x')
+                    path.join(__dirname, 'node_modules', 'base-x'),
+                    path.join(__dirname, 'node_modules', 'ethereumjs-wallet'),
+                    path.join(__dirname, 'node_modules', 'ethereumjs-tx'),
+                    path.join(__dirname, 'node_modules', 'ethereumjs-util')
                 ],
                 loader: 'babel-loader'
             }
