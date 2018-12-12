@@ -2,3 +2,7 @@ src
 mocha.opts
 tsconfig.json
 tests
+.vscode
+scripts
+babel.config.js
+webpack.production.config
