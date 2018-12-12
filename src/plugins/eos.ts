@@ -23,8 +23,11 @@ function getKeyPairBySeed(seed): IKeyPair {
 
     return keyPair;
 }
+export interface IEosPlugin extends IPlugin {
+    //
+}
 
-export const plugin: IPlugin = {
+export const plugin: IEosPlugin = {
     createWalletByMnemonic(mnemonic) {
         const seed = bip39.mnemonicToSeed(mnemonic);
         const keyPair = getKeyPairBySeed(seed);

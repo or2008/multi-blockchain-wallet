@@ -1,6 +1,7 @@
 import { IWallet } from './common/wallet';
 import { getPluginByType } from './plugins';
 import { generateMnemonic } from 'bip39';
+import { IPlugin } from './common/plugin';
 
 const DEFAULT_TYPES = ['bitcoin', 'ethereum', 'eos', 'tron'];
 
@@ -25,4 +26,8 @@ export function createWalletByMnemonicMulti(mnemonic: string, types = DEFAULT_TY
 
 export function signTransaction(type, ...args) {
     return getPluginByType(type).signTransaction(...args);
+}
+
+export function getWalletApiByType<T extends IPlugin>(type) {
+    return getPluginByType<T>(type) as T;
 }

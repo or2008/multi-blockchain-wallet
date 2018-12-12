@@ -8,7 +8,11 @@ function getAddressFromNode(node) {
     return payments.p2pkh({ pubkey: node.publicKey, network: networks.bitcoin }).address;
 }
 
-export const plugin: IPlugin = {
+export interface IBitcoinPlugin extends IPlugin {
+    //
+}
+
+export const plugin: IBitcoinPlugin = {
     createWalletByMnemonic(mnemonic) {
         const seed = bip39.mnemonicToSeed(mnemonic);
         const master = bip32.fromSeed(seed);

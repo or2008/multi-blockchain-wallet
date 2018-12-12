@@ -4,13 +4,16 @@ import { plugin as eosPlugin } from './plugins/eos';
 import { plugin as tronPlugin } from './plugins/tron';
 import { IPlugin } from './common/plugin';
 
-const pluginMap: { [key: string]: IPlugin } = {
+interface IPluginMap {
+    [key: string]: IPlugin
+}
+const pluginMap: IPluginMap = {
     bitcoin: bitcoinPlugin,
     ethereum: ethereumPlugin,
     eos: eosPlugin,
     tron: tronPlugin
 };
 
-export function getPluginByType(type = 'ethereum'): IPlugin {
-    return pluginMap[type];
+export function getPluginByType<T extends IPlugin>(type = 'ethereum'): T {
+    return pluginMap[type] as T;
 }

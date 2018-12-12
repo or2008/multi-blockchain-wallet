@@ -1,6 +1,7 @@
 import { mnemonicToSeed, generateMnemonic } from 'bip39';
 import * as hdkey from 'ethereumjs-wallet/hdkey';
 
+import * as EthereumWallet from 'ethereumjs-wallet';
 import * as EthereumTx from 'ethereumjs-tx';
 import * as EthereumUtil from 'ethereumjs-util';
 
@@ -11,7 +12,12 @@ export interface IEthereumTransaction {
     transaction: object
 }
 
-export const plugin: IPlugin = {
+export interface IEthereumPlugin extends IPlugin {
+    fromV3(walletInstance, password): Object;
+    toV3(walletInstance): Object;
+}
+
+export const plugin: IEthereumPlugin = {
     createWalletByMnemonic(mnemonic) {
         const seed = mnemonicToSeed(mnemonic);
         const hdKey = hdkey.fromMasterSeed(seed);
@@ -45,5 +51,13 @@ export const plugin: IPlugin = {
         const serializedTransaction = ethereumTx.serialize();
         const ethereumTxData = serializedTransaction.toString('hex');
         return EthereumUtil.addHexPrefix(ethereumTxData);
+    },
+
+    fromV3(...args) {
+        return EthereumWallet.fromV3(...args);
+    },
+
+    toV3(...args) {
+        return EthereumWallet.toV3(...args);
     }
 };

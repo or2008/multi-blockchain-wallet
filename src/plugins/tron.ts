@@ -5,7 +5,11 @@ import { address } from 'tronweb';
 
 import { IPlugin } from '../common/plugin';
 
-export const plugin: IPlugin = {
+export interface ITronPlugin extends IPlugin {
+    //
+}
+
+export const plugin: ITronPlugin = {
     createWalletByMnemonic(mnemonic) {
         const seed = bip39.mnemonicToSeed(mnemonic);
         const master = bip32.fromSeed(seed);
