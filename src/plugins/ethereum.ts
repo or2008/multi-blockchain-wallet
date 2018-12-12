@@ -13,8 +13,8 @@ export interface IEthereumTransaction {
 }
 
 export interface IEthereumPlugin extends IPlugin {
-    fromV3(walletInstance, password): Object;
-    toV3(walletInstance): Object;
+    fromV3(walletInstance, password): any;
+    toV3(walletInstance): any;
 }
 
 export const plugin: IEthereumPlugin = {
