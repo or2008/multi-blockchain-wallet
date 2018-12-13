@@ -12,9 +12,9 @@
             "node",
             "mocha"
         ],
+        "outFile": "types/index",
         "emitDeclarationOnly": true,
-        "declaration": true,
-        "declarationDir": "dist/types",
+        "declaration": true
     },
 
     "include": [
