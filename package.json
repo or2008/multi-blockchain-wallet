@@ -3,7 +3,7 @@
   "version": "0.0.49",
   "description": "Hello Hello",
   "main": "dist/index.js",
-  "types": "types/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc && webpack --config webpack.production.config.js",
     "prepublishOnly": "npm test && npm run build",

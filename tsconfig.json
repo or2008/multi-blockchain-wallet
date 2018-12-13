@@ -4,7 +4,6 @@
         "module": "commonjs",
         "sourceMap": true,
         "noEmit": false,
-        "strictNullChecks": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
 
@@ -12,7 +11,7 @@
             "node",
             "mocha"
         ],
-        "outFile": "types/index",
+        "outFile": "dist/index",
         "emitDeclarationOnly": true,
         "declaration": true
     },
