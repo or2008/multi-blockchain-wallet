@@ -11,7 +11,7 @@
             "node",
             "mocha"
         ],
-        "outFile": "dist/index",
+        "outDir": "dist",
         "emitDeclarationOnly": true,
         "declaration": true
     },
