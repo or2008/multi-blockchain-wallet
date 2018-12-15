@@ -13,6 +13,8 @@ export interface IEthereumTransaction {
 }
 
 export interface IEthereumPlugin extends IPlugin {
+    fromEthSale(walletInstance, password): any;
+    fromV1(walletInstance, password): any;
     fromV3(walletInstance, password): any;
     toV3(walletInstance): any;
 }
@@ -51,6 +53,14 @@ export const plugin: IEthereumPlugin = {
         const serializedTransaction = ethereumTx.serialize();
         const ethereumTxData = serializedTransaction.toString('hex');
         return EthereumUtil.addHexPrefix(ethereumTxData);
+    },
+
+    fromEthSale(...args) {
+        return EthereumWallet.fromEthSale(...args);
+    },
+
+    fromV1(...args) {
+        return EthereumWallet.fromV1(...args);
     },
 
     fromV3(...args) {
