@@ -11,6 +11,10 @@
     "test:watch": "npm run build && mocha --opts mocha.opts --watch --reporter min"
   },
   "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/or2008/multi-blockchain-wallet"
+  },
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "7.1.5",
