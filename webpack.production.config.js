@@ -31,7 +31,8 @@ module.exports = {
                     path.join(__dirname, 'node_modules', 'base-x'),
                     path.join(__dirname, 'node_modules', 'ethereumjs-wallet'),
                     path.join(__dirname, 'node_modules', 'ethereumjs-tx'),
-                    path.join(__dirname, 'node_modules', 'ethereumjs-util')
+                    path.join(__dirname, 'node_modules', 'ethereumjs-util'),
+                    path.join(__dirname, 'node_modules', 'rlp')
                 ],
                 loader: 'babel-loader'
             }
