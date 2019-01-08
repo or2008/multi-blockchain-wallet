@@ -7,7 +7,8 @@ module.exports = {
         library: 'MultiBlockchainWallet',
         libraryTarget: 'umd',
         path: path.resolve(__dirname, 'dist'),
-        filename: 'index.js'
+        filename: 'index.js',
+        globalObject: 'typeof self !== \'undefined\' ? self : this' // TODO - remove when its fixed, https://github.com/webpack/webpack/issues/6784
     },
     optimization: {
         minimize: true
