@@ -1,23 +1,21 @@
 const path = require('path');
 
-module.exports = {
+const common = {
     entry: './src/index.ts',
     mode: 'production',
-    output: {
-        library: 'MultiBlockchainWallet',
-        libraryTarget: 'umd',
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'index.js',
-        globalObject: 'typeof self !== \'undefined\' ? self : this' // TODO - remove when its fixed, https://github.com/webpack/webpack/issues/6784
-    },
+
     optimization: {
-        minimize: true
+        minimize: false
     },
     resolve: {
         extensions: ['.ts', '.js']
     },
     module: {
         rules: [
+            {
+                test: /\.node$/,
+                use: 'node-loader'
+            },
             {
                 test: /\.(j|t)sx?$/,
                 include: [
@@ -40,3 +38,30 @@ module.exports = {
         ]
     }
 };
+
+const serverConfig = {
+    target: 'node',
+    output: {
+        library: 'MultiBlockchainWallet',
+        libraryTarget: 'commonjs',
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index.node.js',
+        globalObject: 'typeof self !== \'undefined\' ? self : this' // TODO - remove when its fixed, https://github.com/webpack/webpack/issues/6784
+    },
+
+    ...common
+};
+
+const clientConfig = {
+    target: 'web', // <=== can be omitted as default is 'web'
+    output: {
+        library: 'MultiBlockchainWallet',
+        libraryTarget: 'umd',
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index.js'
+    },
+
+    ...common
+};
+
+module.exports = [clientConfig, serverConfig];
