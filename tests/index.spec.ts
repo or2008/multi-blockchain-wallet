@@ -5,7 +5,7 @@ import { generateMulti, createWalletByMnemonicMulti, validateMnemonic, generateM
 import { IEthereumPlugin } from '../src/plugins/ethereum';
 
 const SAMPLE_MNEMONIC = 'robot leisure pipe wave drop quote lift vicious vacuum tattoo consider town';
-const SAMPLE_V3_WALLET = '{"version":3,"id":"699b17ed-9ff9-41f0-a885-beb486627569","address":"3f4cb1f4bcde58d9dbd9e0c8c4a29339001ff578","crypto":{"ciphertext":"281511da51443c960cb55f2022d0dc3d39f4e9d13af6b67c99a2eee5a17771e9","cipherparams":{"iv":"8af95b4a211081a60915eabf88406f05"},"cipher":"aes-128-ctr","kdf":"scrypt","kdfparams":{"dklen":32,"salt":"426ee53e6469fb874522c4c37ccbcee41fe36aab16b9c361cf7273b7cd87e5a3","n":8192,"r":8,"p":1},"mac":"465312bf06910d8faba00eab56eb8ce9560107a27843886375aafb4ab546da6b"}}';
+const SAMPLE_ETHEREUM_V3_WALLET = '{"version":3,"id":"699b17ed-9ff9-41f0-a885-beb486627569","address":"3f4cb1f4bcde58d9dbd9e0c8c4a29339001ff578","crypto":{"ciphertext":"281511da51443c960cb55f2022d0dc3d39f4e9d13af6b67c99a2eee5a17771e9","cipherparams":{"iv":"8af95b4a211081a60915eabf88406f05"},"cipher":"aes-128-ctr","kdf":"scrypt","kdfparams":{"dklen":32,"salt":"426ee53e6469fb874522c4c37ccbcee41fe36aab16b9c361cf7273b7cd87e5a3","n":8192,"r":8,"p":1},"mac":"465312bf06910d8faba00eab56eb8ce9560107a27843886375aafb4ab546da6b"}}';
 const SAMPLE_PASSWORD = '123123123';
 
 describe('Bancor Module', () => {
@@ -78,7 +78,7 @@ describe('Bancor Module', () => {
     });
 
     it('should convert v3 ethereum wallet to private key', () => {
-        const v3Wallet = SAMPLE_V3_WALLET;
+        const v3Wallet = SAMPLE_ETHEREUM_V3_WALLET;
         const walletInstance = getWalletApiByType<IEthereumPlugin>('ethereum').fromV3(v3Wallet, SAMPLE_PASSWORD);
         const privateKeyString = walletInstance.getPrivateKeyString();
         assert.equal(privateKeyString.length, 66, 'invalid private key');
