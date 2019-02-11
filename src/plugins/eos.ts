@@ -6,6 +6,7 @@ import JsSignatureProvider from 'eosjs/dist/eosjs-jssig';
 
 import { IKeyPair, IWallet } from '../common/wallet';
 import { IPlugin } from '../common/plugin';
+import { SignatureProvider } from 'eosjs/dist/eosjs-api-interfaces';
 
 export interface IEosTransaction {
     chainId: string,
@@ -24,7 +25,7 @@ function getKeyPairBySeed(seed): IKeyPair {
     return keyPair;
 }
 export interface IEosPlugin extends IPlugin {
-    //
+    signTransactionBySignatureProvider(...args): any;
 }
 
 export const plugin: IEosPlugin = {
@@ -47,7 +48,10 @@ export const plugin: IEosPlugin = {
 
     async signTransaction(eosTransaction: IEosTransaction, privateKey: string) {
         const signatureProvider = new JsSignatureProvider([privateKey]);
+        return this.signTransactionBySignatureProvider(eosTransaction, signatureProvider);
+    },
 
+    async signTransactionBySignatureProvider(eosTransaction: IEosTransaction, signatureProvider: SignatureProvider) {
         const { chainId, transaction } = eosTransaction;
         const publicKeys = await signatureProvider.getAvailableKeys();
 
