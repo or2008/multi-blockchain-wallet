@@ -3,7 +3,6 @@ import * as hdkey from 'hdkey';
 import * as ecc from 'eosjs-ecc';
 import * as wif from 'wif';
 import JsSignatureProvider from 'eosjs/dist/eosjs-jssig';
-import * as Eos from 'eosjs';
 
 import { IKeyPair, IWallet } from '../common/wallet';
 import { IPlugin } from '../common/plugin';
@@ -27,11 +26,9 @@ function getKeyPairBySeed(seed): IKeyPair {
 }
 export interface IEosPlugin extends IPlugin {
     signTransactionBySignatureProvider(...args): any;
-    Eos: any;
 }
 
 export const plugin: IEosPlugin = {
-    Eos: Eos,
     createWalletByMnemonic(mnemonic) {
         const seed = bip39.mnemonicToSeed(mnemonic);
         const keyPair = getKeyPairBySeed(seed);
