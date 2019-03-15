@@ -9,7 +9,7 @@ import { IWallet } from '../common/wallet';
 import { IPlugin } from '../common/plugin';
 
 export interface IEthereumTransaction {
-    transaction: IEthereumRawTrasnactionParams
+    transaction: IEthereumRawTrasnactionParams;
 }
 
 export interface IEthereumPlugin extends IPlugin {
@@ -20,14 +20,14 @@ export interface IEthereumPlugin extends IPlugin {
 }
 
 export interface IEthereumRawTrasnactionParams {
-    nonce: string,
-    gasPrice: string,
-    gasLimit: string,
-    to: string,
-    value: string,
-    data: string,
+    nonce: string;
+    gasPrice: string;
+    gasLimit: string;
+    to: string;
+    value: string;
+    data: string;
     // EIP 155 chainId - mainnet: 1, ropsten: 3
-    chainId: number
+    chainId: number;
 }
 
 export const plugin: IEthereumPlugin = {
