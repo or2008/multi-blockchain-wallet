@@ -9,8 +9,8 @@ import { IPlugin } from '../common/plugin';
 import { SignatureProvider } from 'eosjs/dist/eosjs-api-interfaces';
 
 export interface IEosTransaction {
-    chainId: string,
-    transaction: object
+    chainId: string;
+    transaction: object;
 }
 
 function getKeyPairBySeed(seed): IKeyPair {
