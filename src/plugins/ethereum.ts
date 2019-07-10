@@ -48,6 +48,35 @@ export const plugin: IEthereumPlugin = {
         };
     },
 
+    // Ledger (ETH)      - m/44'/60'/x'/0/0
+    // Ledger Live (ETH) - m/44'/60'/0'/0/x
+    // derivationPathTemplate shuld contain x in it, to tell us where we should increment the index ie: m/44'/60'/x'/0/0)
+    // check this for more info https://github.com/MyCryptoHQ/MyCrypto/issues/2070
+    createDeterministicWallets(mnemonic: string, derivationPathTemplate: string, limit: number = 0, offset: number = 20): IWallet[] {
+        const seed = mnemonicToSeed(mnemonic);
+        const hdKey = hdkey.fromMasterSeed(seed);
+        const wallets = [];
+        for (let i = 0; i < limit; i++) {
+            const index = i + offset;
+            const dPath = derivationPathTemplate.replace('x', index.toString());
+            const derivedHdKey = hdKey.derivePath(dPath);
+            const wallet = derivedHdKey.getWallet();
+
+            wallets.push({
+                type: 'ethereum',
+                mnemonic: mnemonic,
+                address: wallet.getAddressString(),
+                derivationPath: dPath,
+                keyPair: {
+                    publicKey: wallet.getPublicKeyString(),
+                    privateKey: wallet.getPrivateKeyString()
+                }
+            });
+        }
+
+        return wallets;
+    },
+
     generateWallet(): IWallet {
         const mnemonic = generateMnemonic();
         return plugin.createWalletByMnemonic(mnemonic);

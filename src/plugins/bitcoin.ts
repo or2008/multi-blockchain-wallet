@@ -30,6 +30,11 @@ export const plugin: IBitcoinPlugin = {
         };
     },
 
+    createDeterministicWallets(): IWallet[] {
+        // TBD
+        return [];
+    },
+
     generateWallet(): IWallet {
         const mnemonic = bip39.generateMnemonic();
         return plugin.createWalletByMnemonic(mnemonic);

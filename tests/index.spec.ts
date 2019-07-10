@@ -1,7 +1,7 @@
 /* globals it, describe */
 
 import * as assert from 'assert';
-import { generateMulti, createWalletByMnemonicMulti, validateMnemonic, generateMnemonic, createWalletByMnemonic, signTransaction, getWalletApiByType } from '../src';
+import { generateMulti, createDeterministicWallets, createWalletByMnemonicMulti, validateMnemonic, generateMnemonic, createWalletByMnemonic, signTransaction, getWalletApiByType } from '../src';
 import { IEthereumPlugin } from '../src/plugins/ethereum';
 
 const SAMPLE_MNEMONIC = 'robot leisure pipe wave drop quote lift vicious vacuum tattoo consider town';
@@ -25,6 +25,19 @@ describe('Test Module', () => {
             assert(wallet.keyPair.privateKey);
             assert(wallet.keyPair.publicKey);
         });
+    });
+
+    it('should create a deterministic Ethereum wallet by provided mnemonic', () => {
+        const mnemonic = SAMPLE_MNEMONIC;
+        const wallets = createDeterministicWallets('ethereum', mnemonic, "m/44'/60'/x'/0/0", 100, 20);
+
+        wallets.forEach(wallet => {
+            assert(wallet.keyPair.privateKey);
+            assert(wallet.keyPair.publicKey);
+        });
+
+        assert(wallets.length == 100);
+        console.log(wallets);
     });
 
     it('validate mnemonic', () => {
