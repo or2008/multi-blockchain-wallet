@@ -32,14 +32,16 @@ export interface IEthereumRawTrasnactionParams {
 
 export const plugin: IEthereumPlugin = {
     createWalletByMnemonic(mnemonic) {
+        const derivationPath = "m/44'/60'/0'/0";
         const seed = mnemonicToSeed(mnemonic);
         const hdKey = hdkey.fromMasterSeed(seed);
-        const derivedHdKey = hdKey.derivePath("m/44'/60'/0'/0").deriveChild(0);
+        const derivedHdKey = hdKey.derivePath(derivationPath).deriveChild(0);
         const wallet = derivedHdKey.getWallet();
 
         return {
             type: 'ethereum',
             mnemonic: mnemonic,
+            derivationPath: derivationPath,
             address: wallet.getAddressString(),
             keyPair: {
                 publicKey: wallet.getPublicKeyString(),

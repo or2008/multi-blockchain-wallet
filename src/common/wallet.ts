@@ -7,7 +7,7 @@ export interface IWallet {
     mnemonic: string;
     type: string;
     address: string;
-    derivationPath: string;
+    derivationPath?: string;
     keyPair: IKeyPair;
 }
 

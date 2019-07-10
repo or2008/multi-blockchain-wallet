@@ -37,7 +37,6 @@ describe('Test Module', () => {
         });
 
         assert(wallets.length == 100);
-        console.log(wallets);
     });
 
     it('validate mnemonic', () => {
