@@ -13,7 +13,7 @@ export interface IEosTransaction {
     transaction: object;
 }
 
-function getKeyPairBySeed(seed): IKeyPair {
+export function getKeyPairBySeed(seed): IKeyPair {
     const master = hdkey.fromMasterSeed(Buffer.from(seed, 'hex'));
     const node = master.derive("m/44'/194'/0'/0").deriveChild(0);
 
