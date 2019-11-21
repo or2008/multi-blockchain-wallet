@@ -26,9 +26,14 @@ export function getKeyPairBySeed(seed): IKeyPair {
 }
 export interface IEosPlugin extends IPlugin {
     signTransactionBySignatureProvider(...args): any;
+    generateKeyPairBySeed(seed: string): IKeyPair;
 }
 
 export const plugin: IEosPlugin = {
+    generateKeyPairBySeed(seed: string) {
+        return getKeyPairBySeed(seed);
+    },
+
     createWalletByMnemonic(mnemonic) {
         const seed = bip39.mnemonicToSeed(mnemonic);
         const keyPair = getKeyPairBySeed(seed);
