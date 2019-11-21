@@ -64,4 +64,4 @@ const clientConfig = {
     ...common
 };
 
-module.exports = [clientConfig, serverConfig];
+module.exports = [clientConfig];
